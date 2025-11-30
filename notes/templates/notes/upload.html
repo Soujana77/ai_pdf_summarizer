@@ -1,17 +1,30 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Upload PDF</title>
+    <link rel="stylesheet" href="{% static 'notes/style.css' %}">
 </head>
 <body>
-    <h2>Upload a PDF</h2>
 
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Upload</button>
-    </form>
+    <div class="container">
+        <h1>Upload a PDF</h1>
 
-    <p><a href="{% url 'notes:home' %}">Back to Home</a></p>
+        <form method="post" enctype="multipart/form-data" style="text-align:center;">
+            {% csrf_token %}
+            
+            <div style="margin: 20px 0; font-size:18px; color:#ccc;">
+                {{ form.file }}
+            </div>
+
+            <button type="submit">Upload</button>
+        </form>
+
+        <div style="text-align:center; margin-top: 20px;">
+            <a href="{% url 'notes:home' %}" class="btn">Back to Home</a>
+        </div>
+    </div>
+
 </body>
 </html>

@@ -1,19 +1,40 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Extracted Text & Summary</title>
+    <title>AI Summary & Extracted Text</title>
+    <link rel="stylesheet" href="{% static 'notes/style.css' %}">
 </head>
 <body>
-    <h2>AI Summary</h2>
-    <p>{{ summary }}</p>
 
-    <h2>Extracted Text from PDF</h2>
-    <pre>
+    <div class="container">
+        
+        <h1>AI Summary</h1>
+        <div style="
+            background:#1a1a1a; 
+            padding:20px; 
+            border-radius:10px; 
+            box-shadow:0 0 15px rgba(255,42,163,0.4);
+            margin-bottom:30px;
+            animation: fadeIn 1.2s ease;">
+            <p style="font-size:18px; line-height:1.6; color:#eee;">
+                {{ summary }}
+            </p>
+        </div>
+
+
+        <h2>Extracted Text from PDF</h2>
+        <pre style="animation: fadeIn 1.5s ease;">
 {{ text }}
-    </pre>
+        </pre>
 
-    <br>
-    <a href="{% url 'notes:upload' %}">Upload another PDF</a><br>
-    <a href="{% url 'notes:home' %}">Home</a>
+        <div style="text-align:center; margin-top: 20px;">
+            <a href="{% url 'notes:upload' %}" class="btn">Upload Another PDF</a>
+            <a href="{% url 'notes:home' %}" class="btn" style="margin-left:10px;">Home</a>
+        </div>
+
+    </div>
+
 </body>
 </html>

@@ -1,0 +1,89 @@
+/* Global dark theme */
+body {
+    background-color: #0d0d0d;
+    color: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 40px 0;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Centered container card */
+.container {
+    width: 70%;
+    margin: auto;
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 42, 163, 0.3);
+    animation: slideUp 0.7s ease-out;
+}
+
+/* Titles */
+h1, h2 {
+    color: #ff2aa3;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Glowing neon pink buttons */
+button, .btn {
+    background: #ff2aa3;
+    border: none;
+    padding: 12px 20px;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s ease;
+}
+
+button:hover, .btn:hover {
+    background: #ff5cbd;
+    box-shadow: 0 0 15px #ff2aa3;
+    transform: scale(1.05);
+}
+
+/* Links */
+a {
+    color: #ff2aa3;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: #ff5cbd;
+    text-shadow: 0 0 10px #ff2aa3;
+}
+
+/* Extracted text box */
+pre {
+    background: #111;
+    padding: 20px;
+    border-radius: 10px;
+    color: #ddd;
+    white-space: pre-wrap;
+    border: 1px solid #ff2aa3;
+    line-height: 1.4;
+}
+
+/* File input styling */
+input[type="file"] {
+    padding: 10px;
+    background: #111;
+    border: 1px solid #ff2aa3;
+    border-radius: 10px;
+    color: #fff;
+    width: 100%;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
