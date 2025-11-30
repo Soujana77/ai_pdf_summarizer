@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Extracted Text</title>
+    <title>Extracted Text & Summary</title>
 </head>
 <body>
-    <h2>Extracted Text from PDF</h2>
+    <h2>AI Summary</h2>
+    <p>{{ summary }}</p>
 
+    <h2>Extracted Text from PDF</h2>
     <pre>
 {{ text }}
     </pre>
 
+    <br>
     <a href="{% url 'notes:upload' %}">Upload another PDF</a><br>
     <a href="{% url 'notes:home' %}">Home</a>
 </body>

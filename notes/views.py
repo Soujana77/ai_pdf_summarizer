@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import UploadPDFForm
-from .utils import extract_text
+from .utils import extract_text,generate_summary
 
 def home(request):
     return render(request, 'notes/home.html')
@@ -11,9 +11,11 @@ def upload_pdf(request):
         if form.is_valid():
             saved_file = form.save()  # save file in media folder
             pdf_path = saved_file.file.path  # full path
-            
+            print("PDF SAVED AT:", pdf_path)
             # extract text
             full_text = extract_text(pdf_path)
+            summary = generate_summary(full_text[:2000])  # limit to avoid large text issues
+
 
             # send extracted text to page
             return render(request, 'notes/show_text.html', {'text': full_text})
