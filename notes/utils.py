@@ -64,3 +64,67 @@ def generate_summary(text):
 
     except Exception as e:
         return f"Summary generation failed. Error: {str(e)}"
+    
+    # -----------------------------
+#   EXTRA AI TOOLS
+# -----------------------------
+
+def generate_keywords(text):
+    prompt = f"Extract 8-15 important keywords from the following text:\n\n{text}"
+    return generic_ai_call(prompt)
+
+
+def generate_bullets(text):
+    prompt = f"Convert the following text into clean bullet point notes:\n\n{text}"
+    return generic_ai_call(prompt)
+
+
+def explain_like_5(text):
+    prompt = f"Explain this text in the simplest way possible, like explaining to a 5-year-old:\n\n{text}"
+    return generic_ai_call(prompt)
+
+
+def simplify_text(text):
+    prompt = f"Simplify the following text and make it easy for students:\n\n{text}"
+    return generic_ai_call(prompt)
+
+
+def translate_text(text, language):
+    prompt = f"Translate this text to {language}:\n\n{text}"
+    return generic_ai_call(prompt)
+
+
+# -----------------------------
+#   Generic function used by all tools
+# -----------------------------
+def generic_ai_call(prompt):
+    url = "https://router.huggingface.co/hf-inference/models/facebook/bart-large-cnn"
+
+    headers = {
+        "Authorization": f"Bearer {HF_API_KEY}",
+        "Content-Type": "application/json"
+    }
+
+    payload = {"inputs": prompt}
+
+    try:
+        response = requests.post(url, headers=headers, json=payload)
+        print("RAW RESPONSE:", response.text)
+        result = response.json()
+
+        # Modern HF format
+        if "generated_text" in result:
+            return result["generated_text"]
+
+        # Older format (some models still return this)
+        if isinstance(result, list) and "summary_text" in result[0]:
+            return result[0]["summary_text"]
+
+        if "error" in result:
+            return f"AI Error: {result['error']}"
+
+        return "AI could not generate a response."
+
+    except Exception as e:
+        return f"AI request failed: {str(e)}"
+

@@ -87,3 +87,32 @@ input[type="file"] {
     from { transform: translateY(40px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
 }
+.ai-tools {
+    display: grid;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.tool-btn {
+    display: block;
+    padding: 12px 18px;
+    background: linear-gradient(90deg, #ff2aa3, #8c2aff);
+    text-decoration: none;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 0 12px rgba(255,42,163,0.6);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tool-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 18px rgba(255,42,163,0.8);
+}
+
+.fade-in {
+    animation: fadeIn 1.2s ease;
+}
+
