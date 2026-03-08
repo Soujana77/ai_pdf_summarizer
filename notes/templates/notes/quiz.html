@@ -1,0 +1,131 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AI Quiz</title>
+    <link rel="stylesheet" href="{% static 'notes/style.css' %}">
+    <style>
+        .quiz-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .quiz-question-card {
+            background-color: #1a1a1a;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 0 15px rgba(255, 42, 163, 0.3);
+        }
+
+        .quiz-question {
+            font-size: 20px;
+            color: #fff;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            background-color: #2a2a2a;
+            color: #eee;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+            font-size: 16px;
+        }
+
+        .quiz-option:hover {
+            background-color: #333;
+            border-color: #ff2aa3;
+        }
+
+        .quiz-option.correct {
+            background-color: #1b8a36;
+            border-color: #28a745;
+            color: white;
+        }
+
+        .quiz-option.wrong {
+            background-color: #b02a37;
+            border-color: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>📝 Practice Quiz</h1>
+
+        {% if quiz %}
+        <div class="quiz-container fade-in">
+            {% for q in quiz %}
+            <div class="quiz-question-card">
+                <div class="quiz-question">{{ q.question }}</div>
+                <div class="quiz-options">
+                    {% for option in q.options %}
+                    <div class="quiz-option"
+                        onclick="checkAnswer(this, '{{ q.answer|escapejs }}', '{{ option|escapejs }}')">
+                        {{ option }}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="card fade-in" style="background:#1a1a1a; padding:20px; border-radius:12px; text-align:center;">
+            <p style="color:#ff5555; font-size:18px;">Could not generate quiz. Please try again.</p>
+        </div>
+        {% endif %}
+
+        <!-- Navigation -->
+        <div style="text-align:center; margin-top: 40px;">
+            <a href="javascript:history.back()" class="btn">Back to Text</a>
+            <a href="{% url 'notes:home' %}" class="btn" style="margin-left:10px;">Home</a>
+        </div>
+
+    </div>
+
+    <script>
+        function checkAnswer(element, correctAnswer, selectedOption) {
+            // Find other options in the same question and disable them
+            let optionsRow = element.parentElement;
+            let allOptions = optionsRow.querySelectorAll('.quiz-option');
+
+            let alreadyAnswered = Array.from(allOptions).some(opt => opt.classList.contains('correct') || opt.classList.contains('wrong'));
+            if (alreadyAnswered) return; // Prevent changing answer
+
+            // Clean both strings to minimize mismatch issues (like leading/trailing spaces)
+            let cleanedCorrect = correctAnswer.trim();
+            let cleanedSelected = selectedOption.trim();
+
+            if (cleanedSelected === cleanedCorrect) {
+                element.classList.add('correct');
+            } else {
+                element.classList.add('wrong');
+                // Highlight the correct one
+                allOptions.forEach(opt => {
+                    if (opt.innerText.trim() === cleanedCorrect) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+        }
+    </script>
+
+</body>
+
+</html>

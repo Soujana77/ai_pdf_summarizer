@@ -13,4 +13,9 @@ urlpatterns = [
     path('explain5/', views.ai_explain5, name='explain5'),
     path('simplify/', views.ai_simplify, name='simplify'),
     path('translate/', views.ai_translate, name='translate'),
+    
+    # New Learning Tools
+    path('flashcards/', views.flashcards_view, name='flashcards'),
+    path('extract-keywords/', views.keywords_view, name='extract_keywords'),
+    path('quiz/', views.quiz_view, name='quiz'),
 ]

@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AI Keywords</title>
+    <link rel="stylesheet" href="{% static 'notes/style.css' %}">
+    <style>
+        .keywords-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .keyword-pill {
+            background: linear-gradient(135deg, #ff2aa3, #aa00ff);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(255, 42, 163, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: default;
+        }
+
+        .keyword-pill:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 42, 163, 0.6);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>🔑 Extracted Keywords</h1>
+
+        {% if keywords %}
+        <div class="keywords-container fade-in">
+            {% for keyword in keywords %}
+            <span class="keyword-pill">{{ keyword }}</span>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="card fade-in" style="background:#1a1a1a; padding:20px; border-radius:12px; text-align:center;">
+            <p style="color:#ff5555; font-size:18px;">Could not extract keywords. Please try again.</p>
+        </div>
+        {% endif %}
+
+        <!-- Navigation -->
+        <div style="text-align:center; margin-top: 50px;">
+            <a href="javascript:history.back()" class="btn">Back to Text</a>
+            <a href="{% url 'notes:home' %}" class="btn" style="margin-left:10px;">Home</a>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

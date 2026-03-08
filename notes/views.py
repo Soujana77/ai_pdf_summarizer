@@ -7,7 +7,10 @@ from .utils import (
     generate_bullets,
     explain_like_5,
     simplify_text,
-    translate_text
+    translate_text,
+    generate_flashcards,
+    extract_keywords,
+    generate_quiz
 )
 
 # -----------------------
@@ -91,4 +94,45 @@ def ai_translate(request):
     return render(request, "notes/ai_tool_output.html", {
         "title": f"Translation to {lang}",
         "result": result
+    })
+
+# -----------------------
+# NEW LEARNING TOOLS
+# -----------------------
+def flashcards_view(request):
+    text = request.GET.get("text", "")
+    if text:
+        flashcards = generate_flashcards(text)
+    else:
+        flashcards = []
+    
+    return render(request, "notes/flashcards.html", {
+        "text": text,
+        "flashcards": flashcards
+    })
+
+
+def keywords_view(request):
+    text = request.GET.get("text", "")
+    if text:
+        keywords = extract_keywords(text)
+    else:
+        keywords = []
+        
+    return render(request, "notes/keywords.html", {
+        "text": text,
+        "keywords": keywords
+    })
+
+
+def quiz_view(request):
+    text = request.GET.get("text", "")
+    if text:
+        quiz = generate_quiz(text)
+    else:
+        quiz = []
+        
+    return render(request, "notes/quiz.html", {
+        "text": text,
+        "quiz": quiz
     })

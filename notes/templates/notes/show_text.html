@@ -2,59 +2,76 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>AI Summary & Tools</title>
     <link rel="stylesheet" href="{% static 'notes/style.css' %}">
 </head>
+
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <!-- AI Summary -->
-    <h1>AI Summary</h1>
-    <div class="card fade-in" style="
+        <!-- AI Summary -->
+        <h1>AI Summary</h1>
+        <div class="card fade-in" style="
         background:#1a1a1a;
         padding:20px;
         border-radius:12px;
         box-shadow:0 0 15px rgba(255,42,163,0.5);
         margin-bottom:25px;">
-        <p style="color:#eee; font-size:18px; line-height:1.6;">
-            {{ summary }}
-        </p>
-    </div>
+            <p style="color:#eee; font-size:18px; line-height:1.6;">
+                {{ summary }}
+            </p>
+        </div>
 
-    <!-- AI Tools Section -->
-    <h2 style="margin-top:40px;">✨ AI Tools You Can Use</h2>
+        <!-- AI Tools Section -->
+        <h2 style="margin-top:40px;">✨ AI Tools You Can Use</h2>
 
-    <div class="ai-tools">
-        <!-- Each button sends text to backend -->
-        
-        <a href="{% url 'notes:keywords' %}?text={{ text|urlencode }}" class="tool-btn">🔑 Generate Keywords</a>
+        <div class="ai-tools">
+            <!-- NEW Study Tools -->
+            <a href="{% url 'notes:flashcards' %}?text={{ text|urlencode }}" class="tool-btn"
+                style="background: linear-gradient(135deg, #00d2ff, #3a7bd5);">🧠 Flashcards</a>
 
-        <a href="{% url 'notes:bullets' %}?text={{ text|urlencode }}" class="tool-btn">📌 Bullet Notes</a>
+            <a href="{% url 'notes:extract_keywords' %}?text={{ text|urlencode }}" class="tool-btn"
+                style="background: linear-gradient(135deg, #ff9a9e, #fecfef);">🔑 Top Keywords</a>
 
-        <a href="{% url 'notes:explain5' %}?text={{ text|urlencode }}" class="tool-btn">🧒 Explain Like I'm 5</a>
+            <a href="{% url 'notes:quiz' %}?text={{ text|urlencode }}" class="tool-btn"
+                style="background: linear-gradient(135deg, #f6d365, #fda085);">📝 Practice Quiz</a>
 
-        <a href="{% url 'notes:simplify' %}?text={{ text|urlencode }}" class="tool-btn">✨ Simplify Text</a>
+            <!-- Each button sends text to backend -->
 
-        <a href="{% url 'notes:translate' %}?text={{ text|urlencode }}&lang=Kannada" class="tool-btn">🌐 Translate to Kannada</a>
+            <a href="{% url 'notes:keywords' %}?text={{ text|urlencode }}" class="tool-btn">🔑 Generate Keywords
+                (Legacy)</a>
 
-        <a href="{% url 'notes:translate' %}?text={{ text|urlencode }}&lang=Hindi" class="tool-btn">🌐 Translate to Hindi</a>
-    </div>
+            <a href="{% url 'notes:bullets' %}?text={{ text|urlencode }}" class="tool-btn">📌 Bullet Notes</a>
 
-    <!-- Extracted Text -->
-    <h2 style="margin-top:40px;">📄 Extracted Text from PDF</h2>
-    <pre class="fade-in" style="white-space:pre-wrap; background:#111; padding:15px; border-radius:10px; color:#ccc;">
+            <a href="{% url 'notes:explain5' %}?text={{ text|urlencode }}" class="tool-btn">🧒 Explain Like I'm 5</a>
+
+            <a href="{% url 'notes:simplify' %}?text={{ text|urlencode }}" class="tool-btn">✨ Simplify Text</a>
+
+            <a href="{% url 'notes:translate' %}?text={{ text|urlencode }}&lang=Kannada" class="tool-btn">🌐 Translate
+                to Kannada</a>
+
+            <a href="{% url 'notes:translate' %}?text={{ text|urlencode }}&lang=Hindi" class="tool-btn">🌐 Translate to
+                Hindi</a>
+        </div>
+
+        <!-- Extracted Text -->
+        <h2 style="margin-top:40px;">📄 Extracted Text from PDF</h2>
+        <pre class="fade-in"
+            style="white-space:pre-wrap; background:#111; padding:15px; border-radius:10px; color:#ccc;">
 {{ text }}
     </pre>
 
-    <!-- Navigation -->
-    <div style="text-align:center; margin-top: 30px;">
-        <a href="{% url 'notes:upload' %}" class="btn">Upload Another PDF</a>
-        <a href="{% url 'notes:home' %}" class="btn" style="margin-left:10px;">Home</a>
+        <!-- Navigation -->
+        <div style="text-align:center; margin-top: 30px;">
+            <a href="{% url 'notes:upload' %}" class="btn">Upload Another PDF</a>
+            <a href="{% url 'notes:home' %}" class="btn" style="margin-left:10px;">Home</a>
+        </div>
+
     </div>
 
-</div>
-
 </body>
+
 </html>
