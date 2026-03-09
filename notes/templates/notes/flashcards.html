@@ -1,8 +1,10 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Flashcards</title>
     <link rel="stylesheet" href="{% static 'notes/style.css' %}">
     <style>
@@ -42,20 +44,29 @@
             justify-content: center;
             padding: 20px;
             box-sizing: border-box;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-            font-size: 18px;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            font-size: 17px;
             line-height: 1.5;
         }
         .flashcard-front {
-            background-color: #1a1a1a;
-            color: #fff;
-            border: 2px solid #ff2aa3;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 2px solid var(--primary-light);
         }
         .flashcard-back {
-            background-color: #ff2aa3;
+            background: linear-gradient(135deg, var(--primary), var(--accent-start));
             color: white;
             transform: rotateY(180deg);
+        }
+        .flashcard:hover .flashcard-inner {
+            box-shadow: 0 8px 25px var(--shadow-color);
+        }
+        .hint-text {
+            text-align: center;
+            color: var(--text-muted);
+            margin-top: 20px;
+            font-style: italic;
         }
     </style>
 </head>
@@ -79,17 +90,17 @@
                 </div>
             {% endfor %}
         </div>
-        <p style="text-align:center; color:#ccc; margin-top:20px;">Click on a card to flip it!</p>
+        <p class="hint-text">💡 Click on a card to flip it!</p>
     {% else %}
-        <div class="card fade-in" style="background:#1a1a1a; padding:20px; border-radius:12px; text-align:center;">
-            <p style="color:#ff5555; font-size:18px;">Could not generate flashcards. Please try again.</p>
+        <div class="card fade-in text-center">
+            <p style="color: var(--error); font-size: 18px;">Could not generate flashcards. Please try again.</p>
         </div>
     {% endif %}
 
     <!-- Navigation -->
-    <div style="text-align:center; margin-top: 40px;">
-        <a href="javascript:history.back()" class="btn">Back to Text</a>
-        <a href="{% url 'notes:home' %}" class="btn" style="margin-left:10px;">Home</a>
+    <div class="nav-links">
+        <a href="javascript:history.back()" class="btn">Back</a>
+        <a href="{% url 'notes:home' %}" class="btn btn-secondary">Home</a>
     </div>
 
 </div>

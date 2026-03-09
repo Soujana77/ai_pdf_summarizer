@@ -1,12 +1,29 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Success</title>
+    <link rel="stylesheet" href="{% static 'notes/style.css' %}">
 </head>
 <body>
-    <h2>PDF Uploaded Successfully!</h2>
-    <a href="{% url 'notes:upload' %}">Upload another</a>
-    <br>
-    <a href="{% url 'notes:home' %}">Back to Home</a>
+
+    <div class="container text-center">
+        <h1>✅ PDF Uploaded Successfully!</h1>
+        
+        <div class="card fade-in">
+            <p style="font-size: 18px; color: var(--text-primary);">
+                Your PDF has been processed. You'll be redirected shortly...
+            </p>
+        </div>
+
+        <div class="nav-links mt-30">
+            <a href="{% url 'notes:upload' %}" class="btn">Upload Another</a>
+            <a href="{% url 'notes:home' %}" class="btn btn-secondary">Home</a>
+        </div>
+    </div>
+
 </body>
 </html>

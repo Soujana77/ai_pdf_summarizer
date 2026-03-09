@@ -2,8 +2,10 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{% static 'notes/style.css' %}">
 </head>
@@ -13,26 +15,15 @@
 
     <h1>{{ title }}</h1>
 
-    <div class="card fade-in" style="
-        background:#1a1a1a;
-        padding:25px;
-        border-radius:12px;
-        box-shadow:0 0 18px rgba(255,42,163,0.5);
-        margin-bottom:30px;
-        font-size:18px;
-        color:#eee;
-        line-height:1.7;">
-        
-        <pre style="white-space:pre-wrap; color:#eee; background:none; border:none;">
-{{ result }}
-        </pre>
-
+    <div class="card fade-in">
+        <pre style="white-space: pre-wrap; color: var(--text-primary); background: none; border: none; font-size: 16px; line-height: 1.7;">{{ result }}</pre>
     </div>
 
     <!-- Navigation buttons -->
-    <div style="text-align:center; margin-top: 25px;">
+    <div class="nav-links">
+        <a href="javascript:history.back()" class="btn">Back</a>
         <a href="{% url 'notes:upload' %}" class="btn">Upload Another PDF</a>
-        <a href="{% url 'notes:home' %}" class="btn" style="margin-left:10px;">Home</a>
+        <a href="{% url 'notes:home' %}" class="btn btn-secondary">Home</a>
     </div>
 
 </div>

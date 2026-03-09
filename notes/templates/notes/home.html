@@ -1,20 +1,22 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Notes Generator</title>
     <link rel="stylesheet" href="{% static 'notes/style.css' %}">
 </head>
 <body>
 
     <div class="container">
-        <h1>AI Notes Generator</h1>
-        <p style="text-align:center; font-size:18px; color:#ccc;">
+        <h1>📚 AI Notes Generator</h1>
+        <p class="text-center" style="font-size: 18px; color: var(--text-secondary); margin-bottom: 30px;">
             Upload your PDF and get automatically generated notes using AI.
         </p>
 
-        <div style="text-align:center; margin-top:30px;">
+        <div class="text-center">
             <a href="{% url 'notes:upload' %}" class="btn">Upload a PDF</a>
         </div>
     </div>

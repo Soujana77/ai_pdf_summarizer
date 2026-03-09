@@ -1,35 +1,37 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Keywords</title>
     <link rel="stylesheet" href="{% static 'notes/style.css' %}">
     <style>
         .keywords-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 12px;
             justify-content: center;
             margin-top: 30px;
         }
 
         .keyword-pill {
-            background: linear-gradient(135deg, #ff2aa3, #aa00ff);
+            background: linear-gradient(135deg, var(--secondary), var(--accent-start));
             color: white;
             padding: 12px 24px;
             border-radius: 50px;
-            font-size: 18px;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(255, 42, 163, 0.4);
-            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(13, 148, 136, 0.3);
+            transition: all 0.3s ease;
             cursor: default;
         }
 
         .keyword-pill:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(255, 42, 163, 0.6);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(13, 148, 136, 0.5);
         }
     </style>
 </head>
@@ -46,15 +48,15 @@
             {% endfor %}
         </div>
         {% else %}
-        <div class="card fade-in" style="background:#1a1a1a; padding:20px; border-radius:12px; text-align:center;">
-            <p style="color:#ff5555; font-size:18px;">Could not extract keywords. Please try again.</p>
+        <div class="card fade-in text-center">
+            <p style="color: var(--error); font-size: 18px;">Could not extract keywords. Please try again.</p>
         </div>
         {% endif %}
 
         <!-- Navigation -->
-        <div style="text-align:center; margin-top: 50px;">
-            <a href="javascript:history.back()" class="btn">Back to Text</a>
-            <a href="{% url 'notes:home' %}" class="btn" style="margin-left:10px;">Home</a>
+        <div class="nav-links">
+            <a href="javascript:history.back()" class="btn">Back</a>
+            <a href="{% url 'notes:home' %}" class="btn btn-secondary">Home</a>
         </div>
 
     </div>
